@@ -3,7 +3,7 @@ package model
 import (
 	"fmt"
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mssql"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/xzy773599929/blog-service/global"
 	"github.com/xzy773599929/blog-service/pkg/setting"
 )
@@ -20,7 +20,7 @@ type Model struct {
 
 func NewDBEngine(databaseSetting *setting.DatabaseSettingS) (*gorm.DB, error) {
 	db, err := gorm.Open(databaseSetting.DBType,
-		fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=%sparseTime=%t&loc=Local",
+		fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=%s&parseTime=%t&loc=Local",
 			databaseSetting.Username,
 			databaseSetting.Password,
 			databaseSetting.Host,
