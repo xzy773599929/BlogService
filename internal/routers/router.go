@@ -5,6 +5,7 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
 	_ "github.com/xzy773599929/blog-service/docs"
+	"github.com/xzy773599929/blog-service/internal/middleware"
 	v1 "github.com/xzy773599929/blog-service/internal/routers/api/v1"
 )
 
@@ -12,6 +13,7 @@ func NewRouter() *gin.Engine  {
 	r := gin.New()
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
+	r.Use(middleware.Translations())
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	article := v1.NewArticle()
